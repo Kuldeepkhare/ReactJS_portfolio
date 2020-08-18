@@ -16,7 +16,8 @@ import {ArrowBack, AssignmentInd, Home, Apps, ContactMail} from '@material-ui/ic
 import avatar from '../images/kuldeep.jpg';
 import {makeStyles} from '@material-ui/core/styles';
 import MobilRightMenuSlider from '@material-ui/core/Drawer';
-import HomeComponent from './HomeComponent';
+import NavBarFooterComponent from './NavBarFooterComponent';
+
 //CSS styles
 const useStyles = makeStyles(theme => ({
     menuSliderContainer: {
@@ -62,40 +63,41 @@ const NavBarComponent = () => {
             className={classes.menuSliderContainer}
             component="div"
             onClick={toggleSlider(slider, false)}>
-        <Avatar className={classes.avatar} src={avatar} alt="Image"></Avatar>
-        <Divider/>
-        <List>
-            {menuItems.map((lsItem, key) => (
-                <ListItem button key={key}>
-                    <ListItemIcon className={classes.listItem}>
-                        {lsItem.listIcon}
-                    </ListItemIcon>
-                    <ListItemText primary={lsItem.listText} className={classes.listItem}/>
-                </ListItem>
-            ))}
-        </List>
-</Box>
-);
-return (
-<>
-<Box component="nav">
-<AppBar position="static" style={{background: '#222'}}>
-<Toolbar>
-<IconButton onClick={toggleSlider("right", true)}>
-<ArrowBack style={{color: 'tomato'}}/>
-</IconButton>
-<Typography variant="h5" style={{color: 'tan'}}>Portfolio</Typography>
-<MobilRightMenuSlider
-anchor="right"
-open={state.right}
-onClose={toggleSlider("right", false)}>
-{slideList("right")}
-</MobilRightMenuSlider>
-</Toolbar>
-</AppBar>
-</Box>
-</>
-);
+            <Avatar className={classes.avatar} src={avatar} alt="Image"></Avatar>
+            <Divider/>
+            <List>
+                {menuItems.map((lsItem, key) => (
+                    <ListItem button key={key}>
+                        <ListItemIcon className={classes.listItem}>
+                            {lsItem.listIcon}
+                        </ListItemIcon>
+                        <ListItemText primary={lsItem.listText} className={classes.listItem}/>
+                    </ListItem>
+                ))}
+            </List>
+        </Box>
+    );
+    return (
+        <>
+            <Box component="nav">
+                <AppBar position="static" style={{background: '#222'}}>
+                    <Toolbar>
+                        <IconButton onClick={toggleSlider("right", true)}>
+                            <ArrowBack style={{color: 'tomato'}}/>
+                        </IconButton>
+                        <Typography variant="h5" style={{color: 'tan'}}>Portfolio</Typography>
+                        <MobilRightMenuSlider
+                            anchor="right"
+                            open={state.right}
+                            onClose={toggleSlider("right", false)}>
+                            {slideList("right")}
+                            <NavBarFooterComponent/>
+                        </MobilRightMenuSlider>
+                    </Toolbar>
+                </AppBar>
+            </Box>
+        </>
+    );
 }
 
 export default NavBarComponent;
